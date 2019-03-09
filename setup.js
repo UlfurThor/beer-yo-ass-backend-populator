@@ -24,7 +24,8 @@ async function main() {
     const beer_price = json[j].price;
     const beer_taste = json[j].taste;
     const beer_volume = json[j].volume;
-    // console.log([beer_id, beer_alcohol, beer_link, beer_name, beer_price, beer_taste, beer_volume]);
+    // console.log([beer_id, beer_alcohol, beer_link,
+    // beer_name, beer_price, beer_taste, beer_volume]);
     // eslint-disable-next-line no-await-in-loop
     await query(q, [
       beer_id,
