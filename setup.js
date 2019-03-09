@@ -25,7 +25,7 @@ async function main() {
     const beer_alcohol = json[j].alcohol.slice(0, -1);
     const beer_link = json[j].link_to_vinbudin;
     const beer_name = json[j].title;
-    const beer_price = json[j].price.slice(0, -4);
+    const beer_price = Number.parseInt(json[j].price.slice(0, -4).replace('.', ''), 10);
     const beer_taste = json[j].taste;
     const beer_volume = json[j].volume.slice(0, -3);
     // console.log([beer_id, beer_alcohol, beer_link,
