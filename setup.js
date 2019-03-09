@@ -15,15 +15,19 @@ async function main() {
   const json = JSON.parse(file);
   console.log(json);
 
-  const q = 'INSERT into beers (beer_id, beer_alcohol, beer_link, beer_name, beer_price, beer_taste, beer_volume) VALUES ($1, $2, $3, $4, $5, $6, $7);';
+  const q = `
+    INSERT into beers
+    (beer_id, beer_alcohol, beer_link, beer_name, beer_price, beer_taste, beer_volume,  beer_stars)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, -1);
+    `;
   for (let j = 0; j < json.length; j += 1) {
     const beer_id = json[j].product_number;
-    const beer_alcohol = json[j].alcohol;
+    const beer_alcohol = json[j].alcohol.slice(0, -1);
     const beer_link = json[j].link_to_vinbudin;
     const beer_name = json[j].title;
-    const beer_price = json[j].price;
+    const beer_price = json[j].price.slice(0, -4);
     const beer_taste = json[j].taste;
-    const beer_volume = json[j].volume;
+    const beer_volume = json[j].volume.slice(0, -3);
     // console.log([beer_id, beer_alcohol, beer_link,
     // beer_name, beer_price, beer_taste, beer_volume]);
     // eslint-disable-next-line no-await-in-loop
