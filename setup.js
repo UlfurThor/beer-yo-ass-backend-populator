@@ -9,7 +9,6 @@ const { query } = require('./db');
 
 const readFileAsync = util.promisify(fs.readFile);
 
-
 async function main() {
   const file = await readFileAsync('./data.json');
 
@@ -18,13 +17,14 @@ async function main() {
 
   const q = 'INSERT into beers (beer_id, beer_alcohol, beer_link, beer_name, beer_price, beer_taste, beer_volume) VALUES ($1, $2, $3, $4, $5, $6, $7);';
   for (let j = 0; j < json.length; j += 1) {
-    const beer_id = json.product_number;
-    const beer_alcohol = json.alcohol;
-    const beer_link = json.link_to_vinbudin;
-    const beer_name = json.title;
-    const beer_price = json.price;
-    const beer_taste = json.taste;
-    const beer_volume = json.volume;
+    const beer_id = json[j].product_number;
+    const beer_alcohol = json[j].alcohol;
+    const beer_link = json[j].link_to_vinbudin;
+    const beer_name = json[j].title;
+    const beer_price = json[j].price;
+    const beer_taste = json[j].taste;
+    const beer_volume = json[j].volume;
+    // console.log([beer_id, beer_alcohol, beer_link, beer_name, beer_price, beer_taste, beer_volume]);
     // eslint-disable-next-line no-await-in-loop
     await query(q, [
       beer_id,
